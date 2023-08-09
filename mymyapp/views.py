@@ -21,7 +21,7 @@ class PostListView(ListView):
     model = Post
     template_name = 'mymyapp/post_list.html'
     context_object_name = 'posts'
-    ordering = ['-created.at']
+    ordering = ['-created_at']
     
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
@@ -30,7 +30,7 @@ class SignUpView(generic.CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return HttpResponseRedirect(reverse_lazy('post_detail', args=[user.post.pk]))
+        return HttpResponseRedirect(reverse_lazy('post_detail', args=[user.post.post_number]))
 
 class PostDetailView(generic.DetailView):
     model = Post

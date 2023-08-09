@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class User(AbstractUser):
-    id = models.AutoField(primary_key=True)
+    user_id = models.AutoField(primary_key=True)
     password = models.CharField(max_length=256)
     nickname = models.CharField(max_length=30, unique=True, null=True, blank=False, verbose_name="닉네임")
     
