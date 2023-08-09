@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ object.user.nickname }}의 홈페이지 입니다.</h2>
+
+  <h3>댓글</h3>
+  {% for comment in object.comments.all %}
+    <div class="comment">
+      <p>{{ comment.writer.nickname }}: {{ comment.content }}</p>
+    </div>
+  {% endfor %}
+
+  <h3>댓글 작성</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">작성하기</button>
+  </form>
+{% endblock %}
